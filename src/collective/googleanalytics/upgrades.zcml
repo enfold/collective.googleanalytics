@@ -1,0 +1,97 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.googleanalytics">
+
+    <genericsetup:upgradeStep
+        source="1.0a2"
+        destination="1.0a3"
+        title="Upgrade from 1.0a2 to 1.0a3"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.upgrade_10a2_to_10a3"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0a3"
+        destination="1.0a4"
+        title="Upgrade from 1.0a3 to 1.0a4"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0a4"
+        destination="1.0b1"
+        title="Upgrade from 1.0a4 to 1.0b1"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.upgrade_10a4_to_10b1"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0b1"
+        destination="1.0b2"
+        title="Upgrade from 1.0b1 to 1.0b2"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.upgrade_10b1_to_10b2"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0b2"
+        destination="1.0b3"
+        title="Upgrade from 1.0b2 to 1.0b3"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0b3"
+        destination="1.0"
+        title="Upgrade from 1.0b3 to 1.0"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.upgrade_10b3_to_10"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0"
+        destination="1.1"
+        title="Upgrade from 1.0 to 1.1"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.1"
+        destination="10"
+        title="Upgrade 1.1 to 10"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.0"
+        destination="1.5a1"
+        title="Upgrade from 1.0 to 1.5a1"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.upgrade_10_to_15a1"
+        />
+
+    <genericsetup:upgradeStep
+        source="10"
+        destination="11"
+        title="Upgrade from 10 to 11"
+        description=""
+        profile="collective.googleanalytics:default"
+        handler="collective.googleanalytics.upgrades.upgrade_10_to_11"
+        />
+
+</configure>

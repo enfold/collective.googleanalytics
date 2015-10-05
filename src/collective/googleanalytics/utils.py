@@ -117,9 +117,10 @@ def extract_value(column):
     elif column.name == 'ga:customVarValue2' or \
          column.name == 'ga:customVarName3':
         value = value.encode('rot13')
-    elif column.type == 'integer':
+    elif getattr(column, 'type', None) == 'integer':
         value = int(value)
-    elif column.type in ['float', 'percent', 'time', 'currency', 'us_currency']:
+    elif getattr(column, 'type', None) in ['float', 'percent', 'time',
+                                           'currency', 'us_currency']:
         value = float(value)
     else:
         try:

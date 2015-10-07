@@ -601,7 +601,7 @@
   </property>
   <property name="start_date"></property>
   <property name="end_date"></property>
-  <property name="max_results"></property>
+  <property name="max_results">python:1000</property>
   <property name="columns">python:['Page Views', 'User name', 'Last access']</property>
   <property name="row_repeat">python:dimension('ga:customVarName3')</property>
   <property
@@ -678,7 +678,7 @@
   </property>
   <property name="start_date"></property>
   <property name="end_date"></property>
-  <property name="max_results"></property>
+  <property name="max_results">python:1000</property>
   <property name="columns">python:['Page Views', 'User name', 'Days']</property>
   <property name="row_repeat">python:dimension('ga:customVarName3')</property>
   <property

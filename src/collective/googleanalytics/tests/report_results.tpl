@@ -10,7 +10,7 @@ data.addColumn("number", "Visits");
 	        var container_width = getAnalyticsContainerWidth($$('#${id}'));
 
 	        var chart = new google.visualization.LineChart(document.getElementById('${id}'));
-	        chart.draw(data, {"width": "container_width", "title": "Site Visits", "titleX": "Day", "titleY": "Visits", "axisFontSize": 10, "legend": "none", "height": 250});
+	        chart.draw(data, {"title": "Site Visits", "height": 250, "legend": "none", "titleX": "Day", "titleY": "Visits", "axisFontSize": 10, "width": "container_width"});
 	    };
 	    setTimeout(draw_visualization, 1);
 	});

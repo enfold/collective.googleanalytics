@@ -1,10 +1,6 @@
 
 import datetime
-try:
-    import simplejson as json
-    json    # pyflakes
-except ImportError:
-    import json
+import json
 import time
 import os
 from collective.googleanalytics.utils import js_literal
@@ -66,7 +62,7 @@ class AnalyticsReportVisualization(object):
             for value in self.rows[0]:
                 if isinstance(value, datetime.date):
                     col_type = 'date'
-                elif isinstance(value, str) or isinstance(value, unicode):
+                elif isinstance(value, str):
                     col_type = 'string'
                 else:
                     col_type = 'number'

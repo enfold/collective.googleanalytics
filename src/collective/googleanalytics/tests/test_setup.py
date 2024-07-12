@@ -1,5 +1,7 @@
 
+from OFS.SimpleItem import SimpleItem
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 from plone.app.testing import quickInstallProduct
@@ -97,7 +99,10 @@ class TestReinstall(FunctionalTestCase):
         self.assertNotEqual(report, None)
 
 
-class DummyTool(object):
+class DummyTool(PloneBaseTool, SimpleItem):
+    id = 'portal_analytics'
+    meta_type = 'Google Analytics Tool'
+
     auth_token = 'foo'
     accounts = None
 

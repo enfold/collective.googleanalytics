@@ -1,8 +1,9 @@
 
 import logging
 import socket
+import ssl
 from AccessControl import ClassSecurityInfo
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from OFS.ObjectManager import IFAwareObjectManager
 from OFS.OrderedFolder import OrderedFolder
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
@@ -13,12 +14,7 @@ from collective.googleanalytics.interfaces.utility import IAnalytics
 from collective.googleanalytics.interfaces.utility import IAnalyticsSchema
 from plone import api
 from plone.memoize import ram
-try:
-    from plone.protect.auto import safeWrite
-except ImportError:
-    # older Plone versions (< 5.0) don't support this, so we provide a stub
-    def safeWrite(obj):
-        pass
+from plone.protect.auto import safeWrite
 from plone.registry.interfaces import IRegistry
 from time import time
 from zope.annotation.interfaces import IAttributeAnnotatable
@@ -30,12 +26,12 @@ from apiclient.discovery import build
 from google.oauth2.credentials import Credentials
 import google_auth_oauthlib
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
-from httplib import ResponseNotReady
+from http.client import ResponseNotReady
 # from urllib.request import Unauthorized, RequestError
 from google.auth.exceptions import RefreshError
 from google.auth.transport.requests import Request
 import requests
-import urllib2
+import urllib.error
 
 logger = logging.getLogger('collective.googleanalytics')
 
@@ -152,7 +148,7 @@ class Analytics(PloneBaseTool, IFAwareObjectManager, OrderedFolder):
     @ram.cache(account_feed_cachekey)
     def _getService(self):
         if not self.is_auth():
-            raise error.BadAuthenticationError, 'You need to authorize with Google'
+            raise error.BadAuthenticationError('You need to authorize with Google')
         creds = self._get_credentials()
 
         if creds and creds.expired and creds.refresh_token:
@@ -215,22 +211,22 @@ class Analytics(PloneBaseTool, IFAwareObjectManager, OrderedFolder):
                     raise ValueError("Not supported api")
                 self._update_credentials(creds)
                 return result
-            except RefreshError, e:
+            except RefreshError as e:
                 reason = e.message
                 if any([r in reason for r in ['Token invalid', 'Forbidden', 'Unauthorized', 'invalid_grant']]):
                     # Reset the stored auth token.
                     self._state['token'] = None
                     settings = self.get_settings()
                     settings.reports_profile = None
-                    raise error.BadAuthenticationError, 'You need to authorize with Google'
+                    raise error.BadAuthenticationError('You need to authorize with Google')
                 else:
                     raise
-            except (socket.sslerror, socket.timeout):
-                raise error.RequestTimedOutError, 'The request to Google timed out'
+            except (ssl.SSLError, socket.timeout):
+                raise error.RequestTimedOutError('The request to Google timed out')
             except (socket.gaierror, ResponseNotReady):
-                raise error.RequestTimedOutError, 'You may not have internet access. Please try again later.'
-            except urllib2.HttpError as e:
-                raise error.InvalidRequestMethodError, str(e)
+                raise error.RequestTimedOutError('You may not have internet access. Please try again later.')
+            except urllib.error.HTTPError as e:
+                raise error.InvalidRequestMethodError(str(e))
 
         finally:
             # socket.setdefaulttimeout(timeout)
@@ -277,7 +273,7 @@ class Analytics(PloneBaseTool, IFAwareObjectManager, OrderedFolder):
         else:
             logger.warning("Problem revoking token")
 
-            # raise error.RequestTimedOutError, (
+            # raise error.RequestTimedOutError(
             #     'You may not have internet access. Please try again '
             #     'later.'
             # )

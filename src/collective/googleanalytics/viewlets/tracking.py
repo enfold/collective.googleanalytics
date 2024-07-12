@@ -2,7 +2,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.googleanalytics.interfaces.tracking import IAnalyticsTrackingPlugin
 from plone.app.layout.analytics.view import AnalyticsViewlet
-from urllib import urlencode
+from urllib.parse import urlencode
 from zope.component import queryMultiAdapter
 
 

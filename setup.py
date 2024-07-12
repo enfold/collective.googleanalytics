@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys
 
-version = '1.7.dev0'
+version = '2.0.dev0'
 
 
 setup(name='collective.googleanalytics',
@@ -12,15 +12,16 @@ setup(name='collective.googleanalytics',
       classifiers=[
           "Development Status :: 5 - Production/Stable",
           "Framework :: Plone",
-          "Framework :: Plone :: 4.3",
-          "Framework :: Plone :: 5.0",
-          "Framework :: Plone :: 5.1",
+          "Framework :: Plone :: 5.2",
+          "Framework :: Plone :: 6.0",
           "Intended Audience :: System Administrators",
           "License :: OSI Approved :: GNU General Public License (GPL)",
           "Operating System :: OS Independent",
           "Programming Language :: JavaScript",
           "Programming Language :: Python",
-          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
           "Topic :: Internet :: Log Analysis",
           "Topic :: Internet :: WWW/HTTP :: Site Management",
           "Topic :: Software Development :: Libraries :: Python Modules",

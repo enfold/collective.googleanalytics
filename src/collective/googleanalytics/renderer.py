@@ -4,11 +4,12 @@ import logging
 import math
 import sys
 import time
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.Expression import getEngine
 from Products.CMFCore.utils import getToolByName
 from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
+from collections import OrderedDict
 from collective.googleanalytics.interfaces.report import IAnalyticsReportRenderer
 from collective.googleanalytics.utils import evaluateTALES
 from collective.googleanalytics.utils import extract_value
@@ -309,7 +310,7 @@ class AnalyticsReportRenderer(object):
 
         # Evaluate the visualization options.
         exp_context = self._getExpressionContext()
-        options = evaluateTALES(dict([v.split(' ', 1) for v in self.report.viz_options]), exp_context)
+        options = evaluateTALES(OrderedDict([v.split(' ', 1) for v in self.report.viz_options]), exp_context)
 
         return AnalyticsReportVisualization(self.report, self.columns(), self.rows(), options)
 

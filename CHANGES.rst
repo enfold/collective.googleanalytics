@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.7 (unreleased)
+2.0 (unreleased)
 ----------------
 
 - Ensure download handler works even on links loaded from AJAX such as the quicksearch.
@@ -13,10 +13,14 @@ Changelog
 - allow setting client secrets ahead of user authentication
   [djay]
 - switched to https://www.googleapis.com/auth/analytics.readonly scope as it's all we need
-  [djay]  
+  [djay]
 - Fix bug where every page view is register twice
   [djay]
 - fix bug where views without "__name__" cause an error
+
+- Drop support for python 2 and Plone < 5.2. Add support for python 3 and Plone 6.0.
+  [enfold_josh]
+
 
 1.6.1 (2017-08-22)
 ------------------
@@ -52,7 +56,7 @@ Changelog
 ------------------
 
 - Add virtual page views for search and error pages [tomgross]
- 
+
 - Use Python json instead of custom one [tomgross]
 
 - Updated Spanish translations [macagua]
@@ -76,7 +80,7 @@ Changelog
 - Use SimpleTerm when creating the reports vocabulary. [frapell]
 
 - Crop overlong profile names [tomgross]
-  
+
 - Pass viewlet view and manager [tomgross]
 
 

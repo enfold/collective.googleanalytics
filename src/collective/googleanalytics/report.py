@@ -1,6 +1,6 @@
 
 from AccessControl import ClassSecurityInfo
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from OFS.PropertyManager import PropertyManager
 from OFS.SimpleItem import SimpleItem
 from zope.component import getGlobalSiteManager
@@ -46,11 +46,11 @@ class AnalyticsReport(PropertyManager, SimpleItem):
     security.declarePrivate('body')
 
     _properties = (
-        {'id': 'title', 'type': 'string', 'mode': 'w',
+        {'id': 'title', 'type': 'ustring', 'mode': 'w',
          'label': 'Title'},
-        {'id': 'description', 'type': 'text', 'mode': 'w',
+        {'id': 'description', 'type': 'utext', 'mode': 'w',
          'label': 'Description'},
-        {'id': 'i18n_domain', 'type': 'string', 'mode': 'w',
+        {'id': 'i18n_domain', 'type': 'ustring', 'mode': 'w',
          'label': 'I18n Domain'},
         {'id': 'categories', 'type': 'multiple selection', 'mode': 'w',
          'label': 'Categories', 'select_variable': 'getCategoriesChoices'},
@@ -60,27 +60,27 @@ class AnalyticsReport(PropertyManager, SimpleItem):
          'label': 'Query Metrics', 'select_variable': 'getMetricsChoices'},
         {'id': 'dimensions', 'type': 'multiple selection', 'mode': 'w',
          'label': 'Query Dimensions', 'select_variable': 'getDimensionsChoices'},
-        {'id': 'filters', 'type': 'lines', 'mode': 'w',
+        {'id': 'filters', 'type': 'ulines', 'mode': 'w',
          'label': 'Query Filters'},
-        {'id': 'sort', 'type': 'lines', 'mode': 'w',
+        {'id': 'sort', 'type': 'ulines', 'mode': 'w',
          'label': 'Query Sort'},
-        {'id': 'start_date', 'type': 'string', 'mode': 'w',
+        {'id': 'start_date', 'type': 'ustring', 'mode': 'w',
          'label': 'Query Start Date'},
-        {'id': 'end_date', 'type': 'string', 'mode': 'w',
+        {'id': 'end_date', 'type': 'ustring', 'mode': 'w',
          'label': 'Query End Date'},
-        {'id': 'max_results', 'type': 'string', 'mode': 'w',
+        {'id': 'max_results', 'type': 'ustring', 'mode': 'w',
          'label': 'Query Maximum Results'},
-        {'id': 'columns', 'type': 'string', 'mode': 'w',
+        {'id': 'columns', 'type': 'ustring', 'mode': 'w',
          'label': 'Table Columns Expression'},
-        {'id': 'row_repeat', 'type': 'string', 'mode': 'w',
+        {'id': 'row_repeat', 'type': 'ustring', 'mode': 'w',
          'label': 'Table Row Repeat Expression'},
-        {'id': 'rows', 'type': 'string', 'mode': 'w',
+        {'id': 'rows', 'type': 'ustring', 'mode': 'w',
          'label': 'Table Rows Expression'},
         {'id': 'viz_type', 'type': 'selection', 'mode': 'w',
          'label': 'Visualization Type', 'select_variable': 'getVisualizationChoices'},
-        {'id': 'viz_options', 'type': 'lines', 'mode': 'w',
+        {'id': 'viz_options', 'type': 'ulines', 'mode': 'w',
          'label': 'Visualization Options'},
-        {'id': 'body', 'type': 'text', 'mode': 'w',
+        {'id': 'body', 'type': 'utext', 'mode': 'w',
          'label': 'Report Body'},
     )
 

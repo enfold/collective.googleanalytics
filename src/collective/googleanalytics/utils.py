@@ -29,7 +29,7 @@ def evaluateTALES(parent, exp_context, evaluate_keys=False):
         for child in parent:
             results.append(evaluateTALES(child, exp_context))
         return type(parent)(results)
-    if type(parent) is dict:
+    if isinstance(parent, dict):
         results = {}
         for key, value in parent.items():
             if evaluate_keys:
@@ -38,7 +38,9 @@ def evaluateTALES(parent, exp_context, evaluate_keys=False):
                 results[key] = evaluateTALES(value, exp_context)
         return results
     try:
-        return Expression(str(parent))(exp_context)
+        if isinstance(parent, bytes):
+            parent = parent.decode('utf-8')
+        return Expression(parent)(exp_context)
     except (KeyError, CompilerError):
         return parent
 
